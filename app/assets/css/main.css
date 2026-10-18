@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  --animate-terminal-cursor: terminal-cursor 1s steps(1, end) infinite;
+
+  @keyframes terminal-cursor {
+    50% { opacity: 0; }
+  }
+}
+
+@layer base {
+  :root {
+    @apply bg-[#080808] font-mono text-[#f2f2ee] antialiased;
+    color-scheme: dark;
+    font-synthesis: none;
+  }
+
+  ::selection {
+    @apply bg-[#f2f2ee] text-[#080808];
+  }
+}
+
+/* Keep finished text hidden until the directive masks it. Without JavaScript
+   or with reduced motion, the readable server-rendered content stays visible. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-scramble-pending] { visibility: hidden; }
+}

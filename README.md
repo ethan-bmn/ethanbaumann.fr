@@ -4,6 +4,11 @@ A minimal terminal-inspired portfolio built with Nuxt 4 and Vue 3. The full-wind
 ASCII frame draws itself clockwise, followed by a character-scramble introduction
 that resolves into large ASCII lettering.
 
+The home page lives in `app/pages/index.vue`; `app/app.vue` renders `NuxtPage`.
+Tailwind CSS is integrated through `@tailwindcss/vite` in `nuxt.config.ts`.
+Use utilities for page and component styling; shared theme and base rules live
+in `app/assets/css/main.css`.
+
 ## Reusable text animation
 
 `v-scramble` is registered globally in `app/plugins/scramble.ts`. Apply it to a

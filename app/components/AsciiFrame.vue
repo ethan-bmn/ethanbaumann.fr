@@ -40,8 +40,12 @@ onMounted(() => {
     }
     const tick = (now: number) => {
       startedAt ??= now
-      const progress = motion?.matches ? 1 : Math.min(1, (now - startedAt) / 1400)
-      render(Math.ceil(perimeter.length * progress))
+      const progress = motion?.matches ? 1 : Math.min(1, (now - startedAt) / 2200)
+      // Keep a soft start and give the final stretch a longer deceleration.
+      const easedProgress = progress < .25
+        ? (progress / .25) ** 2 / 3
+        : 1 - (2 / 3) * ((1 - progress) / .75) ** 3
+      render(progress === 1 ? perimeter.length : Math.floor(perimeter.length * easedProgress))
       if (progress < 1) frame = requestAnimationFrame(tick)
     }
     frame = requestAnimationFrame(tick)
@@ -59,25 +63,12 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="container" class="ascii-frame" aria-hidden="true">
-    <span ref="measure" class="ascii-measure">+</span>
-    <pre>{{ drawing }}</pre>
+  <div
+    ref="container"
+    class="pointer-events-none absolute inset-[17px] z-[-1] overflow-hidden font-mono text-xs leading-4 text-[#e5e5df] max-[700px]:inset-[9px]"
+    aria-hidden="true"
+  >
+    <span ref="measure" class="invisible absolute block">+</span>
+    <pre class="m-0 [font:inherit] tracking-normal whitespace-pre">{{ drawing }}</pre>
   </div>
 </template>
-
-<style scoped>
-.ascii-frame {
-  position: absolute;
-  inset: 17px;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-  color: #e5e5df;
-  font-family: inherit;
-  font-size: 12px;
-  line-height: 16px;
-}
-.ascii-measure { position: absolute; visibility: hidden; display: block; }
-pre { margin: 0; font: inherit; white-space: pre; letter-spacing: 0; }
-@media (max-width: 700px) { .ascii-frame { inset: 9px; } }
-</style>

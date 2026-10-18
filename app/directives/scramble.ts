@@ -15,6 +15,7 @@ const cleanups = new WeakMap<HTMLElement, () => void>()
 
 function animate(el: HTMLElement, value: ScrambleValue) {
   cleanups.get(el)?.()
+  el.removeAttribute('data-scramble-complete')
   const options = typeof value === 'string' ? { text: value } : value ?? {}
   // Preserve line breaks from templates before replacing the text node.
   const readText = () => Array.from(el.childNodes).map(node =>
@@ -58,6 +59,7 @@ function animate(el: HTMLElement, value: ScrambleValue) {
   const finish = () => {
     cancelAnimationFrame(frame)
     visual.textContent = target
+    el.setAttribute('data-scramble-complete', '')
   }
   const onMotionChange = () => { if (motion.matches) finish() }
   motion.addEventListener('change', onMotionChange)
