@@ -1,8 +1,8 @@
 # Ethan Baumann
 
-A minimal terminal-inspired portfolio built with Nuxt 4 and Vue 3. The full-window
-ASCII frame draws itself clockwise, followed by a character-scramble introduction
-that resolves into large ASCII lettering.
+A minimal terminal-inspired portfolio for **ethanbaumann.fr**, built with Nuxt 4,
+Vue 3, Tailwind CSS 4, and Three.js. The hero combines animated geometric name
+lettering with an interactive 3D EB logo.
 
 The home page lives in `app/pages/index.vue`; `app/app.vue` renders `NuxtPage`.
 Tailwind CSS is integrated through `@tailwindcss/vite` in `nuxt.config.ts`.
@@ -40,20 +40,10 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 
 ## Setup
 
-Make sure to install dependencies:
+Use Node.js 24 and Bun 1.3.14, as declared in `package.json`:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+bun install --frozen-lockfile
 ```
 
 ## Development Server
@@ -61,16 +51,6 @@ bun install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
 bun run dev
 ```
 
@@ -79,33 +59,45 @@ bun run dev
 Build the application for production:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
 bun run build
+bun run start
 ```
 
-Locally preview production build:
+The production server runs the standalone Nitro Node entry point in
+`.output/server/index.mjs`. It listens on `0.0.0.0` and uses the platform's `PORT`
+(default `3000`). `NITRO_HOST` and `NITRO_PORT`, if set, take precedence over
+`HOST` and `PORT`. There are no required secrets; `.env.example` lists optional
+local server settings. Set deployment variables in the hosting platform, since
+the built server does not automatically load `.env` files.
 
-```bash
-# npm
-npm run preview
+## Railpack deployment
 
-# pnpm
-pnpm preview
+Select Railpack as the builder and use the repository root as the application
+directory. It detects the toolchain from `package.json` and `bun.lock`:
 
-# yarn
-yarn preview
+| Setting | Value |
+| --- | --- |
+| Package manager | Bun 1.3.14 |
+| Node runtime | Node.js 24 |
+| Install | `bun install --frozen-lockfile` |
+| Build | `bun run build` |
+| Start | `bun run start` |
+| Health check | `/` |
 
-# bun
-bun run preview
-```
+Leave command overrides empty to use automatic detection. The explicit
+`node-server` Nitro preset produces a portable server rather than a static SPA.
+No Dockerfile or `railpack.json` is required.
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Let the platform supply `PORT`; if it requires a fixed target port, configure
+that port and `PORT` to the same value. Keep the host set to `0.0.0.0`. Configure
+the public domain as `ethanbaumann.fr` and enable HTTPS through the hosting
+platform. No persistent volume or database is needed.
+
+Commit `bun.lock` and the source assets, including `app/assets/models/EB_LOGO.obj`.
+Generated `.nuxt/`, `.output/`, `.cache/`, and `node_modules/` directories are
+ignored and should not be committed. The 3D model is bundled at build time, so
+model updates require a rebuild and redeploy.
+
+See the [Railpack Node.js documentation](https://railpack.com/languages/node/)
+and [Bun support](https://railpack.com/languages/bun/) for detection and toolchain
+configuration.

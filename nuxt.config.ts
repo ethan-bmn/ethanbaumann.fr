@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
+  nitro: { preset: 'node-server' },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   app: {
