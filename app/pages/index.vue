@@ -85,5 +85,6 @@ useHead({
 
     <AboutMe />
     <ServicesSection />
+    <PricingSection />
   </main>
 </template>
