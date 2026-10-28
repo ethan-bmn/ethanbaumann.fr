@@ -48,8 +48,8 @@
   padding-block: clamp(70px, 12vh, 150px);
 }
 
-.hero-copy { min-width: 0; }
-.command { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 9px; margin: 0 0 32px; font-size: 13px; letter-spacing: -.02em; }
+.hero-copy { min-width: 0; container-type: inline-size; }
+.command { display: flex; flex-wrap: nowrap; align-items: baseline; gap: .55em; margin: 0 0 32px; font-size: clamp(6px, 4.5cqi, 13px); letter-spacing: -.02em; white-space: nowrap; }
 .shell-user { color: #e5e5e5; }
 .shell-arrow { color: #f14c4c; font-weight: 700; }
 .shell-directory { color: #11a8cd; }
@@ -78,7 +78,7 @@
   .page-header { min-height: 76px; font-size: 14px; }
   .hero { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(12px, 4vw, 24px); padding-block: 58px; }
   .hero-copy { width: 100%; }
-  .command { margin-bottom: 24px; font-size: 12px; gap: 5px 7px; }
+  .command { margin-bottom: 24px; }
   .hero-name { width: 90%; gap: 8px; }
   .role { margin-top: 22px; gap: 12px; }
   .role-text { font-size: clamp(12px, 2.8vw, 14px); }
