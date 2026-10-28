@@ -45,7 +45,7 @@ No test framework, test script, or coverage threshold is configured. Run `bun ru
 
 ## Commit & Pull Request Guidelines
 
-Always commit your changes as part of completing each task, after the relevant verification passes. Commit only files belonging to the task; preserve unrelated working-tree and staged changes. Do not push unless requested.
+Always commit your changes as part of completing each task, after the relevant verification passes. Split changes into small, focused commits, each covering one purpose. Commit only files belonging to the task; preserve unrelated working-tree and staged changes. Do not push unless requested.
 
 Always use Conventional Commits. This is an explicit user preference and applies to every new commit. Format subjects as `type(scope): imperative description`, with an optional scope. Use lowercase types such as `feat`, `fix`, `refactor`, `style`, `docs`, `chore`, or `test`.
 
