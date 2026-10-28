@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import logo from '~/assets/img/EB_LOGO_SOURCE.svg'
-
 const year = new Date().getFullYear()
 const titleComplete = ref(false)
 
@@ -41,7 +39,7 @@ useHead({
       </div>
 
       <div class="hero-mark" aria-hidden="true">
-        <img :src="logo" alt="" width="4356" height="4789" class="logo" fetchpriority="high">
+        <LogoModel />
       </div>
     </section>
 
