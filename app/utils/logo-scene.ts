@@ -93,7 +93,7 @@ export async function createLogoScene(host: HTMLElement, onReady: (ready: boolea
     }
   })
   const front = new SVGLoader().parse(`<svg xmlns="http://www.w3.org/2000/svg">${frontPath.outerHTML}</svg>`)
-  const profile = front.paths.flatMap(path => SVGLoader.createShapes(path))
+  const profile = front.paths.flatMap(path => path.toShapes())
   const frontGeometry = new THREE.ExtrudeGeometry(profile, { depth: 1, bevelEnabled: false, curveSegments: 64 })
   const horizontal = artworkScale / Math.SQRT2
   const vertical = artworkScale * Math.sqrt(2 / 3)
