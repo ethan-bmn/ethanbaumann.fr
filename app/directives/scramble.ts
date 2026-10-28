@@ -91,8 +91,10 @@ function animate(el: HTMLElement, value: ScrambleValue) {
         if (progress >= beginsAt + .35) return letter
         return characters[Math.floor(Math.random() * characters.length)]
       }
-      const settleAt = .25 + (index / Math.max(1, letters.length - 1)) * .75
-      if (progress >= settleAt) return letter
+      // Reveal a short band of scrambling letters in reading order.
+      const beginsAt = (index / Math.max(1, letters.length - 1)) * .75
+      if (progress <= beginsAt) return ' '
+      if (progress >= beginsAt + .25) return letter
       return characters[Math.floor(Math.random() * characters.length)]
     }).join('')
   }
