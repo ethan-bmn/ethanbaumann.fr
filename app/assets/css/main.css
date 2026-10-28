@@ -76,13 +76,13 @@
 
 @media (max-width: 700px) {
   .page-header { min-height: 76px; font-size: 14px; }
-  .hero { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(12px, 4vw, 24px); padding-block: 58px; }
+  .hero { grid-template-columns: minmax(0, 1fr); align-content: center; gap: 40px; padding-block: 48px; }
   .hero-copy { width: 100%; }
   .command { margin-bottom: 24px; }
-  .hero-name { width: 90%; gap: 8px; }
+  .hero-name { width: 90%; max-width: 330px; gap: 8px; }
   .role { margin-top: 22px; gap: 12px; }
   .role-text { font-size: clamp(12px, 2.8vw, 14px); }
-  .hero-mark { width: 100%; max-width: 160px; justify-self: end; }
+  .hero-mark { width: 65%; max-width: 240px; justify-self: center; }
   .page-footer { flex-wrap: wrap; gap: 8px 20px; padding-block: 20px; font-size: 11px; }
 }
 
