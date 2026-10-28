@@ -15,7 +15,7 @@ useHead({
 <template>
   <main class="portfolio">
     <header class="page-header">
-      <a class="site-id" href="/" aria-label="Ethan Baumann, accueil">ethanbaumann.com</a>
+      <a class="site-id" href="/" aria-label="Ethan Baumann, accueil">ethanbaumann.fr</a>
       <ContactButton href="mailto:" />
     </header>
 
