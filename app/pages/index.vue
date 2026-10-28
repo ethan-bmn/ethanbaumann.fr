@@ -34,5 +34,7 @@ useHead({
     <div class="hero-mark" aria-hidden="true">
       <LogoModel />
     </div>
+
+    <AboutMe />
   </main>
 </template>
