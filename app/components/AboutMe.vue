@@ -6,7 +6,7 @@
     </div>
 
     <div class="about-copy">
-      <p>Basé à Lyon, je propose des prestations de <span>conception, développement et déploiement</span> de sites web et de logiciels.</p>
+      <p>Développeur freelance basé à Lyon, en France, je propose des prestations de <span>conception, développement et déploiement</span> de sites web et de logiciels.</p>
       <p>Issu d'un parcours entièrement en alternance à l'école d'ingénieur CESI, j'ai obtenu un <span>bachelor de conception et développement d'applications</span> (RNCP37873).</p>
       <p>J'ai 6 ans d'expérience dans le développement logiciel, <span>dont 3 en entreprise.</span></p>
     </div>

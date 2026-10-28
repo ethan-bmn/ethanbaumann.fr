@@ -1,13 +1,61 @@
 <script setup lang="ts">
 const titleComplete = ref(false)
+const title = 'Développeur freelance à Lyon | Ethan Baumann'
+const description = 'Ethan Baumann, développeur freelance et développeur logiciel à Lyon, France. Prestataire logiciel : conception, développement et déploiement web et logiciel.'
+const siteUrl = 'https://ethanbaumann.fr/'
 
 useHead({
   htmlAttrs: { lang: 'fr' },
-  title: 'Ethan Baumann - Concepteur développeur d’applications web et logicielles basé à Lyon',
+  title,
+  link: [{ rel: 'canonical', href: siteUrl }],
   meta: [
-    { name: 'description', content: 'Ethan Baumann, concepteur développeur d’applications web et logicielles basé à Lyon.' },
+    { name: 'description', content: description },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'fr_FR' },
+    { property: 'og:site_name', content: 'Ethan Baumann' },
+    { property: 'og:title', content: title },
+    { property: 'og:description', content: description },
+    { property: 'og:url', content: siteUrl },
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:description', content: description },
     { name: 'theme-color', content: '#000000' }
-  ]
+  ],
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebSite',
+          '@id': `${siteUrl}#website`,
+          url: siteUrl,
+          name: 'Ethan Baumann',
+          inLanguage: 'fr-FR',
+          publisher: { '@id': `${siteUrl}#person` }
+        },
+        {
+          '@type': 'Person',
+          '@id': `${siteUrl}#person`,
+          name: 'Ethan Baumann',
+          url: siteUrl,
+          email: 'contact@ethanbaumann.fr',
+          jobTitle: 'Développeur freelance et développeur logiciel',
+          homeLocation: { '@type': 'City', name: 'Lyon', containedInPlace: { '@type': 'Country', name: 'France' } }
+        },
+        {
+          '@type': 'Service',
+          '@id': `${siteUrl}#services`,
+          name: 'Développement web et logiciel à Lyon',
+          serviceType: ['Développement logiciel', 'Développement web', 'Conception et déploiement d’applications'],
+          description,
+          url: `${siteUrl}#services`,
+          provider: { '@id': `${siteUrl}#person` },
+          areaServed: { '@type': 'City', name: 'Lyon', containedInPlace: { '@type': 'Country', name: 'France' } }
+        }
+      ]
+    })
+  }]
 })
 </script>
 
@@ -22,12 +70,12 @@ useHead({
         <span class="shell-input">whoami</span>
       </p>
       <h1 id="hero-name" class="hero-name">
-        <span class="sr-only">Ethan Baumann</span>
+        <span class="sr-only">Ethan Baumann, développeur freelance à Lyon</span>
         <GeometricName word="ETHAN" :delay="100" />
         <GeometricName word="BAUMANN" :delay="900" @complete="titleComplete = true" />
       </h1>
       <div class="role" :data-awaiting-title="!titleComplete ? '' : undefined">
-        <h2 v-scramble="{ enabled: titleComplete, duration: 1100, delay: 100 }" class="role-text">Concepteur développeur<br>d’applications web et logicielles basé à Lyon</h2>
+        <p v-scramble="{ enabled: titleComplete, duration: 1100, delay: 100 }" class="role-text">Développeur freelance à Lyon<br>Conception d’applications web et logicielles</p>
       </div>
     </div>
 
@@ -36,5 +84,6 @@ useHead({
     </div>
 
     <AboutMe />
+    <ServicesSection />
   </main>
 </template>
