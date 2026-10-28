@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const titleComplete = ref(false)
-const title = 'Développeur freelance à Lyon | Ethan Baumann'
-const description = 'Ethan Baumann, développeur freelance et développeur logiciel à Lyon, France. Prestataire logiciel : conception, développement et déploiement web et logiciel.'
+const title = 'Développeur logiciel à Lyon | Ethan Baumann'
+const description = 'Ethan Baumann, développeur logiciel à Lyon, France. Prestataire logiciel : conception, développement et déploiement de sites web et d’applications logicielles.'
 const siteUrl = 'https://ethanbaumann.fr/'
 
 useHead({
@@ -40,7 +40,7 @@ useHead({
           name: 'Ethan Baumann',
           url: siteUrl,
           email: 'contact@ethanbaumann.fr',
-          jobTitle: 'Développeur freelance et développeur logiciel',
+          jobTitle: 'Développeur logiciel',
           homeLocation: { '@type': 'City', name: 'Lyon', containedInPlace: { '@type': 'Country', name: 'France' } }
         },
         {
@@ -70,12 +70,12 @@ useHead({
         <span class="shell-input">whoami</span>
       </p>
       <h1 id="hero-name" class="hero-name">
-        <span class="sr-only">Ethan Baumann, développeur freelance à Lyon</span>
+        <span class="sr-only">Ethan Baumann, développeur logiciel à Lyon</span>
         <GeometricName word="ETHAN" :delay="100" />
         <GeometricName word="BAUMANN" :delay="900" @complete="titleComplete = true" />
       </h1>
       <div class="role" :data-awaiting-title="!titleComplete ? '' : undefined">
-        <p v-scramble="{ enabled: titleComplete, duration: 1100, delay: 100 }" class="role-text">Développeur freelance à Lyon<br>Conception d’applications web et logicielles</p>
+        <p v-scramble="{ enabled: titleComplete, duration: 1100, delay: 100 }" class="role-text">Développeur logiciel à Lyon<br>Conception d’applications web et logicielles</p>
       </div>
     </div>
 

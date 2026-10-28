@@ -2,7 +2,7 @@
   <section id="services" class="services" aria-labelledby="services-title">
     <p class="services-command" aria-hidden="true"><span>~</span> ls services/</p>
     <h2 id="services-title">Prestataire logiciel à Lyon</h2>
-    <p class="services-intro">Un interlocuteur freelance pour concevoir, développer et déployer votre projet web ou logiciel.</p>
+    <p class="services-intro">Un interlocuteur pour concevoir, développer et déployer votre projet web ou logiciel.</p>
 
     <div class="services-list">
       <div>
