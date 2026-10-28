@@ -70,12 +70,12 @@ useHead({
         <span class="shell-input">whoami</span>
       </p>
       <h1 id="hero-name" class="hero-name">
-        <span class="sr-only">Ethan Baumann, développeur logiciel à Lyon</span>
+        <span class="sr-only">Ethan Baumann, concepteur développeur d'applications à Lyon</span>
         <GeometricName word="ETHAN" :delay="100" />
         <GeometricName word="BAUMANN" :delay="900" @complete="titleComplete = true" />
       </h1>
       <div class="role" :data-awaiting-title="!titleComplete ? '' : undefined">
-        <p v-scramble="{ enabled: titleComplete, duration: 1100, delay: 100 }" class="role-text">Développeur logiciel à Lyon<br>Conception d’applications web et logicielles</p>
+        <p v-scramble="{ enabled: titleComplete, duration: 1100, delay: 100 }" class="role-text">Concepteur développeur d’applications web et logicielles basé à Lyon</p>
       </div>
     </div>
 
