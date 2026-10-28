@@ -3,9 +3,9 @@ const titleComplete = ref(false)
 
 useHead({
   htmlAttrs: { lang: 'fr' },
-  title: 'Ethan Baumann - Concepteur développeur d’applications web et logicielles',
+  title: 'Ethan Baumann - Concepteur développeur d’applications web et logicielles basé à Lyon',
   meta: [
-    { name: 'description', content: 'Ethan Baumann, concepteur développeur d’applications web et logicielles.' },
+    { name: 'description', content: 'Ethan Baumann, concepteur développeur d’applications web et logicielles basé à Lyon.' },
     { name: 'theme-color', content: '#000000' }
   ]
 })
@@ -27,7 +27,7 @@ useHead({
         <GeometricName word="BAUMANN" :delay="900" @complete="titleComplete = true" />
       </h1>
       <div class="role" :data-awaiting-title="!titleComplete ? '' : undefined">
-        <p v-scramble="{ enabled: titleComplete, duration: 1100, delay: 100 }" class="role-text">Concepteur développeur<br>d’applications web et logicielles</p>
+        <h2 v-scramble="{ enabled: titleComplete, duration: 1100, delay: 100 }" class="role-text">Concepteur développeur<br>d’applications web et logicielles basé à Lyon</h2>
       </div>
     </div>
 
