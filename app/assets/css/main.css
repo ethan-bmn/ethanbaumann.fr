@@ -12,6 +12,7 @@
   }
 
   body { margin: 0; }
+  p { line-height: 1.4; }
   button, a { -webkit-tap-highlight-color: transparent; }
   ::selection { background: white; color: black; }
   :focus-visible { outline: 1px solid white; outline-offset: 6px; }
