@@ -6,6 +6,8 @@ This is Ethan Baumann’s personal portfolio, built with Nuxt 4, Vue 3, TypeScri
 
 ## Project Structure & Module Organization
 
+- The canonical website domain is `ethanbaumann.fr`. Use `.fr` in visible branding, links, and metadata.
+
 - `app/app.vue` renders `NuxtPage`; `app/pages/index.vue` owns the hero, metadata, header, and footer.
 - `app/assets/css/main.css` contains Tailwind’s import, global styles, responsive hero layout, terminal colors, and subtitle cursor. The small-screen breakpoint is 700px.
 - `app/components/GeometricName.vue` renders custom SVG letter outlines. Letters start hidden, scramble into view from left to right, and emit `complete` when finished. The second name row follows the first. Its glyph set currently covers the letters in Ethan’s name.
@@ -42,6 +44,8 @@ No test framework, test script, or coverage threshold is configured. Run `bun ru
 - Clean up animation frames, observers, and listeners when components unmount.
 
 ## Commit & Pull Request Guidelines
+
+Always commit your changes as part of completing each task, after the relevant verification passes. Commit only files belonging to the task; preserve unrelated working-tree and staged changes. Do not push unless requested.
 
 Always use Conventional Commits. This is an explicit user preference and applies to every new commit. Format subjects as `type(scope): imperative description`, with an optional scope. Use lowercase types such as `feat`, `fix`, `refactor`, `style`, `docs`, `chore`, or `test`.
 
