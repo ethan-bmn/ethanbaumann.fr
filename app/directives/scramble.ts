@@ -1,6 +1,7 @@
 import type { ObjectDirective } from 'vue'
 
 export interface ScrambleOptions {
+  enabled?: boolean
   text?: string
   duration?: number
   delay?: number
@@ -31,6 +32,12 @@ function animate(el: HTMLElement, value: ScrambleValue) {
   visual.setAttribute('aria-hidden', 'true')
   visual.style.whiteSpace = 'inherit'
   el.replaceChildren(accessible, visual)
+
+  // Keep the readable SSR layout reserved until a preceding animation finishes.
+  if (options.enabled === false) {
+    visual.textContent = target
+    return
+  }
 
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
   const characters = Array.from(options.characters || alphabet)
