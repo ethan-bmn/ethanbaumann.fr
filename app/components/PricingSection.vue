@@ -10,7 +10,7 @@
       <div class="pricing-options">
         <article class="pricing-option" aria-labelledby="website-pricing-title">
           <h3 id="website-pricing-title">Développement de sites web</h3>
-          <p class="pricing-amount">Sur devis</p>
+          <p class="pricing-amount">À partir de 600€</p>
           <p>Conception et développement d’un site adapté à votre activité et à vos contenus.</p>
         </article>
         <article class="pricing-option" aria-labelledby="software-pricing-title">
