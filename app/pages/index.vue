@@ -6,7 +6,7 @@ const titleComplete = ref(false)
 
 useHead({
   htmlAttrs: { lang: 'fr' },
-  title: 'Ethan Baumann — Concepteur développeur d’applications web et logicielles',
+  title: 'Ethan Baumann - Concepteur développeur d’applications web et logicielles',
   meta: [
     { name: 'description', content: 'Ethan Baumann, concepteur développeur d’applications web et logicielles.' },
     { name: 'theme-color', content: '#000000' }
