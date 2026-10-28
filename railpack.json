@@ -9,8 +9,8 @@
     }
   },
   "deploy": {
-    "base": { "image": "caddy:2-alpine" },
     "inputs": [
+      { "image": "caddy:2-alpine", "include": ["/usr/bin/caddy"] },
       { "step": "build", "include": [".output/public"] }
     ],
     "startCommand": "caddy file-server --root /app/.output/public --listen :3000"
