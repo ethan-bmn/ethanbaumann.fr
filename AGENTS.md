@@ -8,7 +8,7 @@ This is Ethan Baumann’s personal portfolio, built with Nuxt 4, Vue 3, TypeScri
 
 - The canonical website domain is `ethanbaumann.fr`. Use `.fr` in visible branding, links, and metadata.
 
-- `app/app.vue` renders `NuxtPage`; `app/pages/index.vue` owns the hero, metadata, header, and footer.
+- `app/app.vue` wraps `NuxtPage` in `NuxtLayout`; `app/layouts/default.vue` owns the shared page shell, header, and footer. `app/pages/index.vue` owns the hero and page metadata.
 - `app/assets/css/main.css` contains Tailwind’s import, global styles, responsive hero layout, terminal colors, and subtitle cursor. The small-screen breakpoint is 700px.
 - `app/components/GeometricName.vue` renders custom SVG letter outlines. Letters start hidden, scramble into view from left to right, and emit `complete` when finished. The second name row follows the first. Its glyph set currently covers the letters in Ethan’s name.
 - `app/components/ContactButton.vue` is a reusable link with a required `href` prop, a label slot, and an SVG arrow. Its white pixel fill moves diagonally from top left to bottom right with ease-out timing on hover and keyboard focus. The current page uses `mailto:` without a recipient; obtain the actual contact destination before replacing it.
