@@ -34,7 +34,7 @@ useHead({
           <GeometricName word="BAUMANN" :delay="900" @complete="titleComplete = true" />
         </h1>
         <div class="role" :data-awaiting-title="!titleComplete ? '' : undefined">
-          <p v-scramble="{ enabled: titleComplete, duration: 900, delay: 100 }" class="role-text">Concepteur développeur<br>d’applications web et logicielles</p>
+          <p v-scramble="{ enabled: titleComplete, duration: 1100, delay: 100 }" class="role-text">Concepteur développeur<br>d’applications web et logicielles</p>
         </div>
       </div>
 
