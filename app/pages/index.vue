@@ -84,5 +84,6 @@ useHead({
     </div>
 
     <AboutMe />
+    <ServicesSection />
   </main>
 </template>
