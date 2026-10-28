@@ -61,7 +61,7 @@
 .name-word { display: block; width: calc(var(--word-width) / 516 * 100%); height: auto; overflow: visible; }
 .role { display: flex; align-items: baseline; gap: 16px; margin-top: 38px; }
 .role-text { min-width: 0; margin: 0; font-size: clamp(12px, 1.15vw, 17px); line-height: 1.4; white-space: pre-line; color: #b8b8b8; }
-.role-text::after { content: '\2060\00a0\2588'; animation: cursor-blink 1.2s step-end infinite; }
+.role-text::after { content: '\2060\2588'; animation: cursor-blink 1.2s step-end infinite; }
 .hero-mark { position: relative; width: 85%; max-width: 365px; justify-self: end; }
 .logo { display: block; width: 100%; height: auto; }
 
