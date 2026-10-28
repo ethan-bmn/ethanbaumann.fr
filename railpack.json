@@ -5,15 +5,14 @@
       "commands": ["bun install --frozen-lockfile"]
     },
     "build": {
-      "commands": ["bun run build"]
+      "commands": ["bun run generate"]
     }
   },
   "deploy": {
-    "startCommand": "node .output/server/index.mjs",
-    "variables": {
-      "NODE_ENV": "production",
-      "HOST": "0.0.0.0",
-      "PORT": "3000"
-    }
+    "base": { "image": "caddy:2-alpine" },
+    "inputs": [
+      { "step": "build", "include": [".output/public"] }
+    ],
+    "startCommand": "caddy file-server --root /app/.output/public --listen :3000"
   }
 }
