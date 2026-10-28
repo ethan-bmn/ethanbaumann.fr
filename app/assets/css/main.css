@@ -49,7 +49,7 @@
   padding-block: clamp(70px, 12vh, 150px);
 }
 
-.hero-copy { min-width: 0; container-type: inline-size; }
+.hero-copy { --hero-text-width: clamp(65%, 330px, 90%); min-width: 0; container-type: inline-size; }
 .command { display: flex; flex-wrap: nowrap; align-items: baseline; gap: .55em; margin: 0 0 32px; font-size: clamp(6px, 4.5cqi, 13px); letter-spacing: -.02em; white-space: nowrap; }
 .shell-user { color: #e5e5e5; }
 .shell-arrow { color: #f14c4c; font-weight: 700; }
@@ -57,10 +57,10 @@
 .shell-git { color: #3b8eea; font-weight: 700; }
 .shell-git > span { color: #cd3131; }
 .shell-input { margin-left: 3px; color: white; }
-.hero-name { width: clamp(65%, 330px, 90%); margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.hero-name { width: var(--hero-text-width); margin: 0; display: flex; flex-direction: column; gap: 12px; }
 .name-word { display: block; width: calc(var(--word-width) / 516 * 100%); height: auto; overflow: visible; }
-.role { display: flex; align-items: baseline; gap: 16px; margin-top: 38px; }
-.role-text { min-width: 0; margin: 0; font-size: clamp(12px, 1.15vw, 17px); line-height: 1.4; white-space: pre-line; color: #b8b8b8; }
+.role { width: var(--hero-text-width); display: flex; align-items: baseline; gap: 16px; margin-top: 38px; }
+.role-text { min-width: 0; width: 100%; margin: 0; font-size: clamp(12px, 1.15vw, 17px); line-height: 1.4; white-space: pre-line; overflow-wrap: anywhere; color: #b8b8b8; }
 .role-text::after { content: '\2060\2588'; animation: cursor-blink 1.2s step-end infinite; }
 .hero-mark { position: relative; width: 85%; max-width: 365px; justify-self: end; }
 .logo { display: block; width: 100%; height: auto; }
@@ -78,9 +78,9 @@
 @media (max-width: 700px) {
   .page-header { min-height: 76px; font-size: 14px; }
   .hero { grid-template-columns: minmax(0, 1fr); align-content: center; gap: 40px; padding-block: 48px; }
-  .hero-copy { width: 100%; }
+  .hero-copy { --hero-text-width: min(90%, 330px); width: 100%; }
   .command { margin-bottom: 24px; }
-  .hero-name { width: 90%; max-width: 330px; gap: 8px; }
+  .hero-name { gap: 8px; }
   .role { margin-top: 22px; gap: 12px; }
   .role-text { font-size: clamp(12px, 2.8vw, 14px); }
   .hero-mark { width: 65%; max-width: 240px; justify-self: center; }
