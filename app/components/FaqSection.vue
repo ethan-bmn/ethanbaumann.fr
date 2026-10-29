@@ -8,26 +8,21 @@
     </div>
 
     <div class="faq-questions">
-      <details>
-        <summary>Quels types de projets réalisez-vous ?<span class="faq-toggle" aria-hidden="true" /></summary>
+      <FaqAccordion question="Quels types de projets réalisez-vous ?">
         <p>Je conçois et développe des sites web, des applications web et des logiciels sur mesure. Nous partons de votre activité et de vos besoins pour définir une solution adaptée.</p>
-      </details>
-      <details>
-        <summary>Comment obtenir un devis ?<span class="faq-toggle" aria-hidden="true" /></summary>
+      </FaqAccordion>
+      <FaqAccordion question="Comment obtenir un devis ?">
         <p>Envoyez-moi un e-mail à <a href="mailto:contact@ethanbaumann.fr">contact@ethanbaumann.fr</a> en présentant votre idée, les fonctionnalités souhaitées et vos contraintes de budget ou de calendrier. Nous précisons ensemble le périmètre pour établir un devis.</p>
-      </details>
-      <details>
-        <summary>Combien de temps dure un projet ?<span class="faq-toggle" aria-hidden="true" /></summary>
+      </FaqAccordion>
+      <FaqAccordion question="Combien de temps dure un projet ?">
         <p>Le délai dépend du périmètre, de la complexité et des contenus à préparer. Nous définissons un calendrier lors du cadrage, avec des points réguliers pour suivre l’avancement et valider les étapes.</p>
-      </details>
-      <details>
-        <summary>L’hébergement est-il inclus dans le tarif ?<span class="faq-toggle" aria-hidden="true" /></summary>
+      </FaqAccordion>
+      <FaqAccordion question="L’hébergement est-il inclus dans le tarif ?">
         <p>L’hébergement, le déploiement et les sauvegardes sont proposés en supplément du développement. Pour les sites vitrines, un hébergement sur un VPS mutualisé en France est possible. Les logiciels et applications web nécessitent une machine à votre charge ; leur déploiement sur cette machine fait l’objet d’un devis séparé.</p>
-      </details>
-      <details>
-        <summary>Comment se passe la livraison ?<span class="faq-toggle" aria-hidden="true" /></summary>
+      </FaqAccordion>
+      <FaqAccordion question="Comment se passe la livraison ?">
         <p>Nous vérifions ensemble le fonctionnement du site ou de l’application. Je vous transmets ensuite les éléments nécessaires à la prise en main. Si la mise en ligne est prévue au devis, je m’occupe également du déploiement.</p>
-      </details>
+      </FaqAccordion>
     </div>
   </section>
 </template>
@@ -47,16 +42,11 @@
 .faq h2 { margin: 0; font-size: clamp(24px, 3vw, 40px); font-weight: 400; letter-spacing: -.04em; line-height: 1.2; }
 .faq-intro { max-width: 38ch; margin: 24px 0 32px; color: #b8b8b8; font-size: clamp(14px, 1.15vw, 17px); }
 .faq-questions { min-width: 0; }
-.faq details { border-bottom: 1px solid #242424; }
-.faq summary { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding-block: 24px; cursor: pointer; list-style: none; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.4; }
-.faq details:first-child summary { padding-top: 0; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary:hover, .faq summary:focus-visible { color: #11a8cd; }
-.faq-toggle { position: relative; flex: 0 0 12px; width: 12px; height: 12px; color: #11a8cd; }
-.faq-toggle::before, .faq-toggle::after { content: ''; position: absolute; background: currentColor; }
-.faq-toggle::before { top: 5px; left: 0; width: 12px; height: 1px; }
-.faq-toggle::after { top: 0; left: 5px; width: 1px; height: 12px; }
-.faq details[open] .faq-toggle::after { display: none; }
+.faq :deep(details) { border-bottom: 1px solid #242424; }
+.faq :deep(summary) { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding-block: 24px; cursor: pointer; list-style: none; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.4; }
+.faq :deep(details:first-child summary) { padding-top: 0; }
+.faq :deep(summary::-webkit-details-marker) { display: none; }
+.faq :deep(summary:hover), .faq :deep(summary:focus-visible) { color: #11a8cd; }
 .faq details p { max-width: 48ch; margin: 0 0 24px; color: #b8b8b8; font-size: clamp(14px, 1.15vw, 17px); }
 .faq details a { color: white; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 
