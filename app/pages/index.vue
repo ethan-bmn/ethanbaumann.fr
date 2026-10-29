@@ -87,5 +87,6 @@ useHead({
     <ServicesSection />
     <HowIWork />
     <PricingSection />
+    <FaqSection />
   </main>
 </template>
