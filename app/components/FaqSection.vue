@@ -1,3 +1,5 @@
+<script setup lang="ts">
+</script>
 <template>
   <section id="faq" class="faq" aria-labelledby="faq-title">
     <div>
@@ -11,9 +13,6 @@
       <FaqAccordion question="Quels types de projets réalisez-vous ?">
         <p>Je conçois et développe des sites web, des applications web et des logiciels sur mesure. Nous partons de votre activité et de vos besoins pour définir une solution adaptée.</p>
       </FaqAccordion>
-      <FaqAccordion question="Comment obtenir un devis ?">
-        <p>Envoyez-moi un e-mail à <a href="mailto:contact@ethanbaumann.fr">contact@ethanbaumann.fr</a> en présentant votre idée, les fonctionnalités souhaitées et vos contraintes de budget ou de calendrier. Nous précisons ensemble le périmètre pour établir un devis.</p>
-      </FaqAccordion>
       <FaqAccordion question="Combien de temps dure un projet ?">
         <p>Le délai dépend du périmètre, de la complexité et des contenus à préparer. Nous définissons un calendrier lors du cadrage, avec des points réguliers pour suivre l’avancement et valider les étapes.</p>
       </FaqAccordion>
@@ -22,6 +21,12 @@
       </FaqAccordion>
       <FaqAccordion question="Comment se passe la livraison ?">
         <p>Nous vérifions ensemble le fonctionnement du site ou de l’application. Je vous transmets ensuite les éléments nécessaires à la prise en main. Si la mise en ligne est prévue au devis, je m’occupe également du déploiement.</p>
+      </FaqAccordion>
+      <FaqAccordion question="Comment mon site vitrine sera référencé sur Google ?">
+        <p>Tous les sites vitrines que je produis contiennent les données suffisantes à un référencement organique sur les moteurs de recherche. À noter cependant que le SEO n'est pas mon domaine d'expertise, je ne peux donc pas garantir un référencement optimal.</p>
+      </FaqAccordion>
+      <FaqAccordion question="Est-ce que vous utilisez l'IA dans la création des projets ?">
+        <p>Oui. Les outils IA me permettent de livrer plus rapidement des solutions d'une meilleure qualité. </p>
       </FaqAccordion>
     </div>
   </section>

@@ -1,8 +1,8 @@
 <template>
   <section id="methode" class="workflow" aria-labelledby="workflow-title">
     <div>
-      <p class="workflow-command" aria-hidden="true"><span>~</span> cat methode.txt</p>
-      <h2 id="workflow-title">Comment je travaille</h2>
+      <p class="workflow-command" aria-hidden="true"><span>~</span> cat process.txt</p>
+      <h2 id="workflow-title">Comment un projet se déroule</h2>
       <p class="workflow-intro">Un projet se construit ensemble, étape par étape. Vous savez où nous en sommes et ce qui vient ensuite.</p>
     </div>
 
@@ -11,28 +11,22 @@
         <span class="workflow-number" aria-hidden="true">01</span>
         <div>
           <h3>Échanger & cadrer</h3>
-          <p>Nous échangeons sur votre activité, vos objectifs et vos contraintes. Je vous propose un périmètre, un devis et un calendrier à valider ensemble.</p>
-        </div>
-      </li>
-      <li>
-        <span class="workflow-number" aria-hidden="true">02</span>
-        <div>
-          <h3>Concevoir la solution</h3>
-          <p>Je définis la structure, les parcours et les choix techniques adaptés à votre projet. Nous validons cette direction avant de passer au développement.</p>
+          <p>Quel sont vos besoins métier, vos contraintes et vos objectifs ? On aborde ces sujets ensemble pour cadrer un projet qui répond à vos attentes.</p>
+          <p>Je définis la structure, les jalons et les choix techniques adaptés à votre projet. Nous validons cette direction avant de passer au développement.</p>
         </div>
       </li>
       <li>
         <span class="workflow-number" aria-hidden="true">03</span>
         <div>
           <h3>Développer & ajuster</h3>
-          <p>Je développe votre site ou application avec des points réguliers pour vous montrer les avancées. Vos retours permettent d’ajuster le résultat au fil du projet.</p>
+          <p>Je développe votre site ou application avec des points réguliers (sprints) pour vous montrer les avancées. Vos retours permettent d’ajuster le résultat au fil du projet.</p>
         </div>
       </li>
       <li>
         <span class="workflow-number" aria-hidden="true">04</span>
         <div>
           <h3>Tester & livrer</h3>
-          <p>Nous vérifions ensemble le fonctionnement avant la livraison. Je vous transmets les éléments nécessaires à la prise en main et, si prévu au devis, je m’occupe de la mise en ligne.</p>
+          <p>Nous vérifions ensemble le fonctionnement avant la livraison. Je vous transmets les éléments nécessaires à la prise en main (documentation, accès, ...) et, si prévu au devis, je m’occupe de la mise en ligne.</p>
         </div>
       </li>
     </ol>
