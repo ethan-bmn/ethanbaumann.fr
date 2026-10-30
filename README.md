@@ -108,7 +108,15 @@ configuration.
 and `bun run generate` cannot deliver form messages; deploy with `bun run build`
 and `bun run start` using the included Railpack configuration.
 
-Copy `.env.example` to `.env` for local development. In production, configure:
+For local development, create the ignored `.env` file before starting Nuxt:
+
+```bash
+cp .env.example .env
+```
+
+Set `NUXT_SMTP_USER` and `NUXT_SMTP_PASSWORD` in `.env`, then start (or restart)
+`bun run dev`. Nuxt does not load `.env.example`; keep it free of credentials.
+In production, configure these variables in the hosting platform:
 
 | Variable | Value |
 | --- | --- |
@@ -124,6 +132,10 @@ Nuxt dev uses the local request origin. For a local production preview, set
 `NUXT_CONTACT_ORIGIN=http://localhost:3000` in the process environment. Restart
 the server after changing variables. The authenticated mailbox is always the
 sender; the visitor is the Reply-To address. No automatic visitor email is sent.
+If submission returns `503 Contact service unavailable`, the server has missing
+or invalid SMTP configuration: check the host, mailbox address, password,
+recipient address, and port (`465` or `587`). This check runs before any SMTP
+connection, so this error does not indicate that the mail server rejected delivery.
 See [OVH's MX Plan settings](https://docs.ovhcloud.com/en/guides/web-cloud/email-and-collaborative-solutions/mx-plan/landing-page-mx-plan)
 for product-specific connection details. Hosting must allow outbound SMTP traffic.
 
