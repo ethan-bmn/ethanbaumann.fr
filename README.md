@@ -70,6 +70,31 @@ The production server runs the standalone Nitro Node entry point in
 required by the contact form. Set deployment variables in the hosting platform, since
 the built server does not automatically load `.env` files.
 
+## Docker Compose
+
+Create `.env` from `.env.example` if it does not already exist, then fill in the
+SMTP mailbox credentials. Compose passes the contact settings to the running
+container; `.env` files are excluded from the Docker build context.
+
+```bash
+docker compose up -d --build
+docker compose logs -f app
+```
+
+The app is available on port `3000`. `HOST` and `PORT` in `.env` control the
+published interface and port; the container always listens on `0.0.0.0:3000`.
+For local form submissions, set `NUXT_CONTACT_ORIGIN=http://localhost:3000`
+(adjust the port if needed). For deployment behind an HTTPS reverse proxy, set
+it to `https://ethanbaumann.fr` and forward traffic to the published app port.
+
+The image builds with Bun 1.3.14 and Node.js 24, then runs only the production
+output as an unprivileged user. No source mounts or persistent volumes are needed.
+After changing runtime settings, run `docker compose up -d` to recreate the
+container. Use `docker compose down` to stop and remove it.
+
+See the [Compose environment documentation](https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/)
+for variable handling.
+
 ## Railpack deployment
 
 Select Railpack as the builder and use the repository root as the application
