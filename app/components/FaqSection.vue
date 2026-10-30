@@ -25,9 +25,6 @@
       <FaqAccordion question="Comment mon site vitrine sera référencé sur Google ?">
         <p>Tous les sites vitrines que je produis contiennent les données suffisantes à un référencement organique sur les moteurs de recherche. À noter cependant que le SEO n'est pas mon domaine d'expertise, je ne peux donc pas garantir un référencement optimal.</p>
       </FaqAccordion>
-      <FaqAccordion question="Est-ce que vous utilisez l'IA dans la création des projets ?">
-        <p>Oui. Les outils IA me permettent de livrer plus rapidement des solutions d'une meilleure qualité. </p>
-      </FaqAccordion>
     </div>
   </section>
 </template>
