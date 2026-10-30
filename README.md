@@ -73,7 +73,7 @@ the built server does not automatically load `.env` files.
 ## Docker Compose
 
 Create `.env` from `.env.example` if it does not already exist, then fill in the
-SMTP mailbox credentials. Compose passes the contact settings to the running
+SMTP mailbox credentials and Turnstile keys (see below). Compose passes the contact settings to the running
 container; `.env` files are excluded from the Docker build context.
 
 ```bash
@@ -151,8 +151,11 @@ In production, configure these variables in the hosting platform:
 | `NUXT_SMTP_PASSWORD` | Mailbox password, not the OVH account password |
 | `NUXT_CONTACT_TO` | Recipient address; defaults to `contact@ethanbaumann.fr` |
 | `NUXT_CONTACT_ORIGIN` | Public origin without a trailing slash; defaults to `https://ethanbaumann.fr` |
+| `NUXT_PUBLIC_TURNSTILE_SITE_KEY` | Public site key for your Cloudflare Turnstile widget |
+| `NUXT_TURNSTILE_SECRET_KEY` | Private secret key for the same widget |
 
-These variables are private runtime configuration and never sent to the browser.
+SMTP settings and the Turnstile secret are private runtime configuration and
+never sent to the browser. Only the Turnstile site key is public.
 Nuxt dev uses the local request origin. For a local production preview, set
 `NUXT_CONTACT_ORIGIN=http://localhost:3000` in the process environment. Restart
 the server after changing variables. The authenticated mailbox is always the
@@ -164,8 +167,36 @@ connection, so this error does not indicate that the mail server rejected delive
 See [OVH's MX Plan settings](https://docs.ovhcloud.com/en/guides/web-cloud/email-and-collaborative-solutions/mx-plan/landing-page-mx-plan)
 for product-specific connection details. Hosting must allow outbound SMTP traffic.
 
-The endpoint validates fields and JSON size, checks the request origin, includes
-a honeypot, and allows five submissions per ten minutes per socket IP. This limit
+The home page ends with the contact form at `/#contact`; the header and quote
+buttons scroll to it. `/contact` also uses the same form.
+
+### Cloudflare Turnstile
+
+In the [Cloudflare dashboard](https://dash.cloudflare.com/), open Turnstile and
+create a **Managed** widget. Add `ethanbaumann.fr` to its allowed hostnames (and
+any other hostname you actually serve). Put the site key in
+`NUXT_PUBLIC_TURNSTILE_SITE_KEY` and the secret key in
+`NUXT_TURNSTILE_SECRET_KEY` in `.env` or the hosting platform's environment.
+Restart Nuxt or recreate the Compose container after changing them. The secret
+stays on the server. Pages are server-rendered so the public site key can be
+changed at runtime without rebuilding the Docker image.
+
+Submission stays disabled until the challenge supplies a token. The server
+validates it with Cloudflare before sending email, including its hostname
+against `NUXT_CONTACT_ORIGIN` and its `contact` action. Missing keys, failed
+verification, and Cloudflare outages never allow email delivery. Tokens are
+reset after every submission attempt. Visitors can still use the email link
+if the widget cannot load.
+
+For local development with real keys, use a separate widget allowing your local
+hostname, and set the production-preview origin to match. Automated tests mock
+Cloudflare and SMTP; no challenge or email delivery is required. Cloudflare also
+provides [dummy keys for isolated testing](https://developers.cloudflare.com/turnstile/troubleshooting/testing/);
+never deploy those keys publicly. Our hostname and action checks still apply.
+
+The endpoint validates fields and JSON size, checks the request origin, verifies
+the [Turnstile token on the server](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/),
+includes a honeypot, and allows five submissions per ten minutes per socket IP. This limit
 is in memory, resets on restart, and is separate on each instance. Behind a proxy,
 the socket IP may be shared by visitors; configure a trusted proxy/CDN rate limit
 for `/api/contact` when deploying multiple replicas or needing per-visitor limits.

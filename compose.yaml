@@ -12,6 +12,8 @@ services:
       NUXT_SMTP_PASSWORD: ${NUXT_SMTP_PASSWORD:?Set NUXT_SMTP_PASSWORD in .env}
       NUXT_CONTACT_TO: ${NUXT_CONTACT_TO:-contact@ethanbaumann.fr}
       NUXT_CONTACT_ORIGIN: ${NUXT_CONTACT_ORIGIN:-https://ethanbaumann.fr}
+      NUXT_PUBLIC_TURNSTILE_SITE_KEY: ${NUXT_PUBLIC_TURNSTILE_SITE_KEY:?Set NUXT_PUBLIC_TURNSTILE_SITE_KEY in .env}
+      NUXT_TURNSTILE_SECRET_KEY: ${NUXT_TURNSTILE_SECRET_KEY:?Set NUXT_TURNSTILE_SECRET_KEY in .env}
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
       interval: 30s

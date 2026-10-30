@@ -5,15 +5,17 @@ const form = reactive({ name: '', email: '', message: '', website: '' })
 const sending = ref(false)
 const sent = ref(false)
 const error = ref('')
+const turnstileToken = ref('')
+const challenge = useTemplateRef('challenge')
 
 async function submit() {
-  if (sending.value) return
+  if (sending.value || !turnstileToken.value) return
   sending.value = true
   sent.value = false
   error.value = ''
 
   try {
-    await $fetch('/api/contact', { method: 'POST', body: { ...form }, retry: 0 })
+    await $fetch('/api/contact', { method: 'POST', body: { ...form, turnstileToken: turnstileToken.value }, retry: 0 })
     sent.value = true
     Object.assign(form, { name: '', email: '', message: '', website: '' })
   } catch (cause) {
@@ -22,8 +24,11 @@ async function submit() {
       ? 'Trop de tentatives. Réessayez dans 10 minutes ou contactez-moi par e-mail.'
       : status === 400
         ? 'Vérifiez votre nom, votre adresse e-mail et votre message.'
-        : 'L’envoi n’a pas pu être confirmé. Votre texte est conservé : réessayez ou contactez-moi par e-mail.'
+        : status === 403
+          ? 'La vérification a expiré ou échoué. Veuillez la renouveler avant de réessayer.'
+          : 'L’envoi n’a pas pu être confirmé. Votre texte est conservé : réessayez ou contactez-moi par e-mail.'
   } finally {
+    challenge.value?.reset()
     sending.value = false
   }
 }
@@ -61,7 +66,8 @@ async function submit() {
           </div>
 
           <p class="privacy-note">Vos coordonnées et votre message me sont transmis par e-mail pour répondre à votre demande.</p>
-          <button type="submit">{{ sending ? 'Envoi en cours…' : 'Envoyer le message ↗' }}</button>
+          <TurnstileChallenge ref="challenge" v-model="turnstileToken" />
+          <button type="submit" :disabled="!turnstileToken">{{ sending ? 'Envoi en cours…' : 'Envoyer le message ↗' }}</button>
         </fieldset>
         <p class="form-status" role="status">{{ sent ? 'Merci ! Votre message a bien été envoyé.' : '' }}</p>
         <p v-if="error" class="form-error" role="alert">{{ error }} <a href="mailto:contact@ethanbaumann.fr">contact@ethanbaumann.fr</a></p>
@@ -90,6 +96,7 @@ textarea { resize: vertical; }
 .privacy-note { line-height: 1.6; }
 button { min-height: 44px; padding: 12px 18px; border: 1px solid white; background: white; color: black; cursor: pointer; font: inherit; font-size: 14px; }
 button:hover { background: #d4d4d4; }
+button:disabled { opacity: .65; cursor: not-allowed; }
 fieldset:disabled { opacity: .65; }
 fieldset:disabled button { cursor: wait; }
 .form-status, .form-error { margin: 20px 0 0; font-size: 14px; overflow-wrap: anywhere; }

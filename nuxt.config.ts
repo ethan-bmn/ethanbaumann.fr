@@ -4,8 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   nitro: {
-    preset: 'node-server',
-    prerender: { routes: ['/', '/contact'] }
+    preset: 'node-server'
   },
   runtimeConfig: {
     smtp: {
@@ -17,6 +16,12 @@ export default defineNuxtConfig({
     contact: {
       to: 'contact@ethanbaumann.fr',
       origin: 'https://ethanbaumann.fr'
+    },
+    turnstile: {
+      secretKey: ''
+    },
+    public: {
+      turnstileSiteKey: ''
     }
   },
   devtools: { enabled: true },

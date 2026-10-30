@@ -4,6 +4,7 @@ import {
 } from 'h3'
 import { useRuntimeConfig } from '#imports'
 import { allowContactAttempt, emailPattern, readContactBody, validateContact } from '../utils/contact'
+import { verifyTurnstile } from '../utils/turnstile'
 
 export default defineEventHandler(async (event) => {
   setHeader(event, 'Cache-Control', 'no-store')
@@ -23,8 +24,11 @@ export default defineEventHandler(async (event) => {
     setHeader(event, 'Retry-After', '600')
     throw createError({ statusCode: 429, statusMessage: 'Too many requests' })
   }
-  const { name, email, message, website } = validateContact(await readContactBody(event))
+  const body = await readContactBody(event)
+  const { name, email, message, website } = validateContact(body)
   if (website) return { success: true }
+
+  await verifyTurnstile((body as Record<string, unknown>).turnstileToken, config.turnstile.secretKey, allowedOrigin)
 
   const { host, user, password } = config.smtp
   const port = Number(config.smtp.port)
