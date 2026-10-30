@@ -12,6 +12,7 @@
   }
 
   body { margin: 0; }
+  html { scroll-behavior: smooth; }
   p { line-height: 1.4; }
   button, a { -webkit-tap-highlight-color: transparent; }
   ::selection { background: white; color: black; }
@@ -88,6 +89,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; }
 }
 

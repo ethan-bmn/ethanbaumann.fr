@@ -32,7 +32,7 @@
         </ul>
       </aside>
 
-      <ContactButton href="/contact">Demander un devis</ContactButton>
+      <ContactButton href="/#contact">Demander un devis</ContactButton>
     </div>
   </section>
 </template>
