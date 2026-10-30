@@ -4,8 +4,20 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   nitro: {
-    preset: 'static',
-    prerender: { routes: ['/'] }
+    preset: 'node-server',
+    prerender: { routes: ['/', '/contact'] }
+  },
+  runtimeConfig: {
+    smtp: {
+      host: 'ssl0.ovh.net',
+      port: 465,
+      user: '',
+      password: ''
+    },
+    contact: {
+      to: 'contact@ethanbaumann.fr',
+      origin: 'https://ethanbaumann.fr'
+    }
   },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],

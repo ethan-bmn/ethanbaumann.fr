@@ -4,7 +4,7 @@
       <p class="services-command" aria-hidden="true"><span>~</span> ls services/</p>
       <h2 id="services-title" class="services-title">Mes services</h2>
       <p class="services-intro">De la conception au déploiement, je vous accompagne dans vos projets web et logiciels.</p>
-      <ContactButton href="mailto:contact@ethanbaumann.fr">Parlons de votre projet</ContactButton>
+      <ContactButton href="/contact">Parlons de votre projet</ContactButton>
     </div>
 
     <ol class="services-list">

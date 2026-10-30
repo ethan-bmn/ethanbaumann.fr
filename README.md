@@ -66,8 +66,8 @@ bun run start
 The production server runs the standalone Nitro Node entry point in
 `.output/server/index.mjs`. It listens on `0.0.0.0` and uses the platform's `PORT`
 (default `3000`). `NITRO_HOST` and `NITRO_PORT`, if set, take precedence over
-`HOST` and `PORT`. There are no required secrets; `.env.example` lists optional
-local server settings. Set deployment variables in the hosting platform, since
+`HOST` and `PORT`. `.env.example` lists server settings and the SMTP variables
+required by the contact form. Set deployment variables in the hosting platform, since
 the built server does not automatically load `.env` files.
 
 ## Railpack deployment
@@ -85,8 +85,8 @@ directory. It detects the toolchain from `package.json` and `bun.lock`:
 | Health check | `/` |
 
 Leave command overrides empty to use automatic detection. The explicit
-`node-server` Nitro preset produces a portable server rather than a static SPA.
-No Dockerfile or `railpack.json` is required.
+`node-server` Nitro preset produces a portable server. The committed
+`railpack.json` builds and deploys `.output` and starts the Node server.
 
 Let the platform supply `PORT`; if it requires a fixed target port, configure
 that port and `PORT` to the same value. Keep the host set to `0.0.0.0`. Configure
@@ -101,3 +101,40 @@ model updates require a rebuild and redeploy.
 See the [Railpack Node.js documentation](https://railpack.com/languages/node/)
 and [Bun support](https://railpack.com/languages/bun/) for detection and toolchain
 configuration.
+
+## Contact form and OVH SMTP
+
+`/contact` submits to the server-only `POST /api/contact` endpoint. Static hosting
+and `bun run generate` cannot deliver form messages; deploy with `bun run build`
+and `bun run start` using the included Railpack configuration.
+
+Copy `.env.example` to `.env` for local development. In production, configure:
+
+| Variable | Value |
+| --- | --- |
+| `NUXT_SMTP_HOST` | `ssl0.ovh.net` for OVH MX Plan, or your product's SMTP host |
+| `NUXT_SMTP_PORT` | `465` (implicit TLS); `587` uses mandatory STARTTLS if your service supports it |
+| `NUXT_SMTP_USER` | Full mailbox address, e.g. `contact@ethanbaumann.fr` |
+| `NUXT_SMTP_PASSWORD` | Mailbox password, not the OVH account password |
+| `NUXT_CONTACT_TO` | Recipient address; defaults to `contact@ethanbaumann.fr` |
+| `NUXT_CONTACT_ORIGIN` | Public origin without a trailing slash; defaults to `https://ethanbaumann.fr` |
+
+These variables are private runtime configuration and never sent to the browser.
+Nuxt dev uses the local request origin. For a local production preview, set
+`NUXT_CONTACT_ORIGIN=http://localhost:3000` in the process environment. Restart
+the server after changing variables. The authenticated mailbox is always the
+sender; the visitor is the Reply-To address. No automatic visitor email is sent.
+See [OVH's MX Plan settings](https://docs.ovhcloud.com/en/guides/web-cloud/email-and-collaborative-solutions/mx-plan/landing-page-mx-plan)
+for product-specific connection details. Hosting must allow outbound SMTP traffic.
+
+The endpoint validates fields and JSON size, checks the request origin, includes
+a honeypot, and allows five submissions per ten minutes per socket IP. This limit
+is in memory, resets on restart, and is separate on each instance. Behind a proxy,
+the socket IP may be shared by visitors; configure a trusted proxy/CDN rate limit
+for `/api/contact` when deploying multiple replicas or needing per-visitor limits.
+Forwarded IP headers are intentionally not trusted by the application.
+
+Run `bun test` for contact endpoint tests (SMTP is mocked; no email is sent).
+After setting the real credentials, submit one message and confirm receipt and
+Reply-To behavior in the destination mailbox. An SMTP acceptance confirms the
+server accepted the email, but does not guarantee inbox delivery.

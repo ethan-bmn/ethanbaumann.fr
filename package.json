@@ -8,12 +8,14 @@
   },
   "scripts": {
     "build": "nuxt build",
+    "start": "node .output/server/index.mjs",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "nodemailer": "^10.3.1",
     "nuxt": "^4.6.3",
     "three": "0.186.1",
     "vue": "^3.5.44",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "@types/nodemailer": "^8.0.2",
     "@types/three": "0.186.0",
     "tailwindcss": "^4.3.3"
   }

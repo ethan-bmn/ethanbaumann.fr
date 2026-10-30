@@ -6,7 +6,7 @@ const year = new Date().getFullYear()
   <div class="portfolio">
     <header class="page-header">
       <a class="site-id" href="/" aria-label="Ethan Baumann, accueil">ethanbaumann.fr</a>
-      <ContactButton href="mailto:contact@ethanbaumann.fr" />
+      <ContactButton href="/contact" />
     </header>
 
     <slot />
