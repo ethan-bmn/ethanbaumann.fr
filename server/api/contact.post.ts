@@ -50,7 +50,7 @@ export default defineEventHandler(async (event) => {
       from: { name: 'Portfolio Ethan Baumann', address: user },
       to: { address: to, name: 'Ethan Baumann' },
       replyTo: { name, address: email },
-      subject: 'Nouveau contact — ethanbaumann.fr',
+      subject: 'Nouveau contact - ethanbaumann.fr',
       text: `Nom : ${name}\nE-mail : ${email}\n\n${message}`,
       disableFileAccess: true,
       disableUrlAccess: true
