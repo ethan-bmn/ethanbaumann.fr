@@ -15,7 +15,6 @@ export interface TurnstileApi {
   render: (container: HTMLElement, options: TurnstileOptions) => string
   reset: (id: string) => void
   remove: (id: string) => void
-  ready: (callback: () => void) => void
 }
 
 let pending: Promise<TurnstileApi> | undefined
@@ -36,10 +35,8 @@ export function loadTurnstile() {
     script.onload = () => {
       const api = (window as Window & { turnstile?: TurnstileApi }).turnstile
       if (!api) return fail()
-      api.ready(() => {
-        clearTimeout(timer)
-        resolve(api)
-      })
+      clearTimeout(timer)
+      resolve(api)
     }
     document.head.appendChild(script)
   }).catch(error => {
