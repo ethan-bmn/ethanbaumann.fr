@@ -67,7 +67,7 @@ async function submit() {
 
           <p class="privacy-note">Vos coordonnées et votre message me sont transmis par e-mail pour répondre à votre demande.</p>
           <TurnstileChallenge ref="challenge" v-model="turnstileToken" />
-          <button type="submit" :disabled="!turnstileToken">{{ sending ? 'Envoi en cours…' : 'Envoyer le message ↗' }}</button>
+          <button type="submit" :disabled="sending || !turnstileToken">{{ sending ? 'Envoi en cours…' : 'Envoyer le message ↗' }}</button>
         </fieldset>
         <p class="form-status" role="status">{{ sent ? 'Merci ! Votre message a bien été envoyé.' : '' }}</p>
         <p v-if="error" class="form-error" role="alert">{{ error }} <a href="mailto:contact@ethanbaumann.fr">contact@ethanbaumann.fr</a></p>
@@ -95,8 +95,8 @@ textarea { resize: vertical; }
 .field-hint { margin-top: -12px; }
 .privacy-note { line-height: 1.6; }
 button { min-height: 44px; padding: 12px 18px; border: 1px solid white; background: white; color: black; cursor: pointer; font: inherit; font-size: 14px; }
-button:hover { background: #d4d4d4; }
-button:disabled { opacity: .65; cursor: not-allowed; }
+button:enabled:hover { background: #d4d4d4; }
+button:disabled { border-color: #444; background: #171717; color: #919191; cursor: not-allowed; }
 fieldset:disabled { opacity: .65; }
 fieldset:disabled button { cursor: wait; }
 .form-status, .form-error { margin: 20px 0 0; font-size: 14px; overflow-wrap: anywhere; }
