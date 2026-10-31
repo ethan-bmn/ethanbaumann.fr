@@ -94,6 +94,15 @@ onMounted(() => {
   .section-nav:not(.is-open) { display: none; }
 }
 
+@media (max-width: 700px) and (prefers-reduced-motion: no-preference) {
+  .section-nav.is-open { animation: menu-unfold .28s ease-out; }
+}
+
+@keyframes menu-unfold {
+  from { clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(-8px); }
+  to { clip-path: inset(0); opacity: 1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .section-links a, .section-links a::after, .menu-icon > span { transition: none; }
 }
