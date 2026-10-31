@@ -23,7 +23,7 @@ async function render() {
       sitekey: siteKey,
       action: 'contact',
       theme: 'dark',
-      size: 'compact',
+      size: 'normal',
       language: 'fr',
       'response-field': false,
       callback: value => { token.value = value; error.value = '' },
@@ -66,4 +66,8 @@ defineExpose({ reset })
 .verification { margin-bottom: 24px; min-width: 0; }
 .verification p { color: #ffb4ab; font-size: 13px; overflow-wrap: anywhere; }
 button { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; }
+/* Center the 300px widget within the page gutters on narrow phones. */
+@media (max-width: 348px) {
+  .verification { margin-inline: calc((100vw - 348px) / 2); }
+}
 </style>
