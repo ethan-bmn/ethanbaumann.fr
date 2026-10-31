@@ -196,8 +196,11 @@ never deploy those keys publicly. Our hostname and action checks still apply.
 
 The endpoint validates fields and JSON size, checks the request origin, verifies
 the [Turnstile token on the server](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/),
-includes a honeypot, and allows five submissions per ten minutes per socket IP. This limit
-is in memory, resets on restart, and is separate on each instance. Behind a proxy,
+includes a honeypot, and allows five attempts per ten minutes per socket IP.
+Email delivery is additionally limited to two messages per rolling hour per socket IP,
+with concurrent sends counted immediately and failed deliveries releasing their slots.
+Rate-limited responses include a `Retry-After` header. These limits
+are in memory, reset on restart, and are separate on each instance. Behind a proxy,
 the socket IP may be shared by visitors; configure a trusted proxy/CDN rate limit
 for `/api/contact` when deploying multiple replicas or needing per-visitor limits.
 Forwarded IP headers are intentionally not trusted by the application.

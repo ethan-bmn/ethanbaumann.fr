@@ -21,7 +21,7 @@ async function submit() {
   } catch (cause) {
     const status = (cause as { statusCode?: number }).statusCode
     error.value = status === 429
-      ? 'Trop de tentatives. Réessayez dans 10 minutes ou contactez-moi par e-mail.'
+      ? 'Trop de tentatives ou limite de 2 messages par heure atteinte. Réessayez plus tard ou contactez-moi par e-mail.'
       : status === 400
         ? 'Vérifiez votre nom, votre adresse e-mail et votre message.'
         : status === 403

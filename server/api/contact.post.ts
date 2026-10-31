@@ -5,6 +5,7 @@ import {
 import { useRuntimeConfig } from '#imports'
 import { allowContactAttempt, emailPattern, readContactBody, validateContact } from '../utils/contact'
 import { verifyTurnstile } from '../utils/turnstile'
+import { reserveContactEmail } from '../utils/contact-email-limit'
 
 export default defineEventHandler(async (event) => {
   setHeader(event, 'Cache-Control', 'no-store')
@@ -20,7 +21,8 @@ export default defineEventHandler(async (event) => {
   }
 
   // Use the socket IP; do not trust client-supplied forwarding headers.
-  if (!allowContactAttempt(getRequestIP(event) || 'unknown')) {
+  const ip = getRequestIP(event) || 'unknown'
+  if (!allowContactAttempt(ip)) {
     setHeader(event, 'Retry-After', '600')
     throw createError({ statusCode: 429, statusMessage: 'Too many requests' })
   }
@@ -49,6 +51,13 @@ export default defineEventHandler(async (event) => {
     tls: { minVersion: 'TLSv1.2' }
   })
 
+  const reservation = reserveContactEmail(ip)
+  if (!reservation.allowed) {
+    transport.close()
+    setHeader(event, 'Retry-After', String(reservation.retryAfter))
+    throw createError({ statusCode: 429, statusMessage: 'Hourly email limit reached' })
+  }
+
   try {
     const result = await transport.sendMail({
       from: { name: 'Portfolio Ethan Baumann', address: user },
@@ -61,6 +70,7 @@ export default defineEventHandler(async (event) => {
     })
     if (!result.accepted?.length) throw new Error('Recipient rejected')
   } catch {
+    reservation.release()
     // Do not expose SMTP responses, credentials, or submitted personal data.
     throw createError({ statusCode: 502, statusMessage: 'Message delivery failed' })
   } finally {

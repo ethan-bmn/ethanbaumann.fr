@@ -1,7 +1,13 @@
-import { afterAll, beforeAll, expect, mock, spyOn, test } from 'bun:test'
+import { afterAll, beforeAll, beforeEach, expect, mock, spyOn, test } from 'bun:test'
 import { createServer, type Server } from 'node:http'
 import { createApp, defineEventHandler, toNodeListener } from 'h3'
 import { allowContactAttempt, readContactBody, validateContact } from '../server/utils/contact'
+import { createContactEmailLimiter } from '../server/utils/contact-email-limit'
+
+let clock = Date.now()
+const clockSpy = spyOn(Date, 'now').mockImplementation(() => clock)
+beforeEach(() => { clock += 3600001 })
+afterAll(() => clockSpy.mockRestore())
 
 const config = {
   smtp: { host: 'ssl0.ovh.net', port: 465, user: 'contact@ethanbaumann.fr', password: 'test-only' },
@@ -66,6 +72,27 @@ test('limits attempts independently and expires the window', () => {
   expect(allowContactAttempt('unit-a', now)).toBe(false)
   expect(allowContactAttempt('unit-b', now)).toBe(true)
   expect(allowContactAttempt('unit-a', now + 600000)).toBe(true)
+})
+
+test('email quota uses a rolling hour per IP and releases failed delivery slots', () => {
+  const reserve = createContactEmailLimiter()
+  const first = reserve('a', 0)
+  expect(first.allowed).toBe(true)
+  expect(reserve('a', 600000).allowed).toBe(true)
+  expect(reserve('a', 600001)).toEqual({ allowed: false, retryAfter: 3000 })
+  expect(reserve('b', 600001).allowed).toBe(true)
+  expect(reserve('a', 3599999)).toEqual({ allowed: false, retryAfter: 1 })
+  expect(reserve('a', 3600000).allowed).toBe(true)
+  // The second delivery is still in the rolling hour after the first expires.
+  expect(reserve('a', 3600000)).toEqual({ allowed: false, retryAfter: 600 })
+  if (first.allowed) first.release()
+  expect(reserve('a', 3600000).allowed).toBe(false)
+
+  const failed = reserve('failed', 0)
+  expect(reserve('failed', 0).allowed).toBe(true)
+  expect(reserve('failed', 0).allowed).toBe(false)
+  if (failed.allowed) failed.release()
+  expect(reserve('failed', 0).allowed).toBe(true)
 })
 
 test('bounds streamed body size and rejects malformed JSON', async () => {
@@ -135,6 +162,34 @@ test('blocks absent, oversized, rejected, replayed and mismatched Turnstile toke
     expect(siteverify.mock.calls.length - calls).toBe(entry.result ? 1 : 0)
   }
   expect(sendMail.mock.calls.length).toBe(sentBefore)
+})
+
+test('endpoint sends at most two emails per hour even with concurrent requests', async () => {
+  const before = sendMail.mock.calls.length
+  const responses = await Promise.all(Array.from({ length: 3 }, () => post('/api/contact', valid)))
+  expect(responses.map(response => response.status).sort()).toEqual([200, 200, 429])
+  expect(sendMail.mock.calls.length - before).toBe(2)
+  expect(responses.find(response => response.status === 429)?.headers.get('retry-after')).toBe('3600')
+
+  // A forged forwarding header cannot give the same socket a fresh quota.
+  const spoofed = await fetch(`${base}/api/contact`, {
+    method: 'POST',
+    headers: { origin: config.contact.origin, 'content-type': 'application/json', 'x-forwarded-for': '203.0.113.25' },
+    body: JSON.stringify({ ...valid, turnstileToken: 'test-token' })
+  })
+  expect(spoofed.status).toBe(429)
+  clock += 3600000
+  expect((await post('/api/contact', valid)).status).toBe(200)
+})
+
+test('failed email delivery does not consume the hourly quota', async () => {
+  sendMail.mockImplementationOnce(async () => { throw new Error('SMTP unavailable') })
+  expect((await post('/api/contact', valid)).status).toBe(502)
+  expect((await post('/api/contact', valid)).status).toBe(200)
+  expect((await post('/api/contact', valid)).status).toBe(200)
+  const blocked = await post('/api/contact', valid)
+  expect(blocked.status).toBe(429)
+  expect(blocked.headers.get('retry-after')).toBe('3600')
 })
 
 test('fails closed when verification is unavailable or unconfigured without exposing secrets', async () => {
