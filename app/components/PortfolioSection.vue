@@ -27,6 +27,16 @@ import { projects } from '~/data/projects'
           </dl>
         </NuxtLink>
       </li>
+      <li class="project-card">
+        <a href="#contact" class="project-link project-invitation">
+          <h3>Votre projet</h3>
+          <p class="project-url">La prochaine réalisation ?</p>
+          <div class="project-placeholder" aria-hidden="true">
+            <span>+</span>
+          </div>
+          <p class="project-invitation-label">Parlons de votre projet <span aria-hidden="true">↗</span></p>
+        </a>
+      </li>
     </ul>
   </section>
 </template>
@@ -62,11 +72,15 @@ h3 { margin: 0; font-size: clamp(24px, 3vw, 30px); font-weight: 400; text-align:
 .project-url { margin: 8px 0 20px; color: #a3a3a3; font-size: 14px; text-align: center; overflow-wrap: anywhere; }
 img { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; object-fit: cover; border: 1px solid #242424; background: #090909; transition: border-color .2s ease-out; }
 .project-link:hover img, .project-link:focus-visible img { border-color: #919191; }
+.project-placeholder { display: grid; place-items: center; aspect-ratio: 8 / 5; border: 1px dashed #555; background: #090909; color: #919191; transition: border-color .2s ease-out, color .2s ease-out; }
+.project-placeholder span { font-size: 64px; font-weight: 300; line-height: 1; }
+.project-invitation:hover .project-placeholder, .project-invitation:focus-visible .project-placeholder { border-color: white; color: white; }
+.project-invitation-label { display: flex; justify-content: space-between; gap: 12px; margin: 16px 0 0; font-size: 12px; line-height: 1.6; }
 .project-details { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin: 16px 0 0; font-size: 12px; line-height: 1.6; }
 dt { color: #919191; }
 dd { margin: 4px 0 0; color: #e5e5e5; }
 
 @media (prefers-reduced-motion: reduce) {
-  img { transition: none; }
+  img, .project-placeholder { transition: none; }
 }
 </style>
