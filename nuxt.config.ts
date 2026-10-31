@@ -28,7 +28,11 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   app: {
     head: {
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+      meta: [
+        { property: 'og:image', content: 'https://ethanbaumann.fr/share-logo.png' },
+        { property: 'og:image:alt', content: 'Logo EB — Ethan Baumann' }
+      ]
     }
   },
   vite: {
