@@ -37,9 +37,11 @@ export const projects = [
       'Il rassemble les informations sur les prises en charge, les tarifs et les modalités de consultation, avec un accès à la prise de rendez-vous sur Doctolib.'
     ],
     insights: [
+      { title: 'Un design fidèle aux idées du client', text: 'Conception du design à partir de ce que le client avait en tête, pour traduire ses idées et ses envies dans l’identité visuelle du site.' },
       { title: 'Présentation du praticien', text: 'Une page qui met en avant son parcours, son approche et son accompagnement des problématiques personnelles et professionnelles.' },
       { title: 'Informations pratiques', text: 'Des sections dédiées aux prises en charge et à la tarification pour préparer un premier échange.' },
-      { title: 'Prise de rendez-vous', text: 'Des liens vers Doctolib accessibles à plusieurs endroits du site pour faciliter la réservation d’une consultation.' }
+      { title: 'Prise de rendez-vous', text: 'Des liens vers Doctolib accessibles à plusieurs endroits du site pour faciliter la réservation d’une consultation.' },
+      { title: 'Adresse e-mail et Google Workspace', text: 'Création de l’adresse e-mail professionnelle et accompagnement dans la configuration de Google Workspace pour aider le client à prendre en main sa messagerie.' }
     ],
     comment: ''
   }
