@@ -1,14 +1,5 @@
 <script setup lang="ts">
-const projects = [
-  {
-    url: 'https://masterbygreg.com',
-    name: 'masterbygreg.com',
-    image: '/portfolio/masterbygreg.jpg',
-    alt: 'Aperçu du site Master by Greg, ingénieur du son',
-    domain: 'Audio / musique',
-    type: 'Site web'
-  }
-]
+import { projects } from '~/data/projects'
 </script>
 
 <template>
@@ -20,21 +11,21 @@ const projects = [
 
     <ul class="project-carousel" aria-label="Projets réalisés" tabindex="0">
       <li v-for="project in projects" :key="project.url" class="project-card">
-        <a :href="project.url" target="_blank" rel="noopener noreferrer" class="project-link">
-          <h3>{{ project.name }} <span aria-hidden="true">↗</span></h3>
-          <span class="sr-only">(nouvel onglet)</span>
+        <NuxtLink :to="`/portfolio/${project.slug}`" class="project-link">
+          <h3>{{ project.title }}</h3>
+          <p class="project-url">{{ project.hostname }}</p>
           <img :src="project.image" :alt="project.alt" width="1280" height="800" loading="lazy" decoding="async">
-        </a>
-        <dl class="project-details">
-          <div>
-            <dt>Domaine</dt>
-            <dd>{{ project.domain }}</dd>
-          </div>
-          <div>
-            <dt>Type</dt>
-            <dd>{{ project.type }}</dd>
-          </div>
-        </dl>
+          <dl class="project-details">
+            <div>
+              <dt>Domaine</dt>
+              <dd>{{ project.domain }}</dd>
+            </div>
+            <div>
+              <dt>Type</dt>
+              <dd>{{ project.type }}</dd>
+            </div>
+          </dl>
+        </NuxtLink>
       </li>
     </ul>
   </section>
@@ -67,11 +58,10 @@ h2 { margin: 0; font-size: clamp(24px, 3vw, 40px); font-weight: 400; letter-spac
 
 .project-card { flex: 0 0 min(360px, 100%); min-width: 0; scroll-snap-align: start; }
 .project-link { position: relative; display: block; text-decoration: none; }
-h3 { display: flex; justify-content: space-between; gap: 12px; margin: 0 0 14px; font-size: 14px; font-weight: 400; overflow-wrap: anywhere; }
-h3 span { color: #919191; }
+h3 { margin: 0; font-size: clamp(24px, 3vw, 30px); font-weight: 400; text-align: center; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.project-url { margin: 8px 0 20px; color: #a3a3a3; font-size: 14px; text-align: center; overflow-wrap: anywhere; }
 img { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; object-fit: cover; border: 1px solid #242424; background: #090909; transition: border-color .2s ease-out; }
 .project-link:hover img, .project-link:focus-visible img { border-color: #919191; }
-.project-link:hover h3 span { color: white; }
 .project-details { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin: 16px 0 0; font-size: 12px; line-height: 1.6; }
 dt { color: #919191; }
 dd { margin: 4px 0 0; color: #e5e5e5; }
