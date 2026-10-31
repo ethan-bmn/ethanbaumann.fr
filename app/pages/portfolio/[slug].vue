@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { projects } from '~/data/projects'
 
-const project = projects[0]!
+definePageMeta({ key: route => route.path })
+
+const route = useRoute()
+const project = projects.find(project => project.slug === route.params.slug)
+if (!project) {
+  throw createError({ statusCode: 404, statusMessage: 'Projet introuvable' })
+}
+
 const title = `${project.title} — Projet web | Ethan Baumann`
-const description = 'Création du site Master by Greg pour Grégory Coulet, ingénieur du son : présentation des services, conseils en hébergement et suivi des évolutions.'
-const canonical = 'https://ethanbaumann.fr/portfolio/masterbygreg'
+const description = project.description
+const canonical = `https://ethanbaumann.fr/portfolio/${project.slug}`
 
 useHead({
   htmlAttrs: { lang: 'fr' },
@@ -29,7 +36,7 @@ useHead({
     <NuxtLink class="back-link" to="/#portfolio">← Retour au portfolio</NuxtLink>
 
     <header class="project-header">
-      <p class="project-command" aria-hidden="true"><span>~</span> cat projects/masterbygreg.md</p>
+      <p class="project-command" aria-hidden="true"><span>~</span> cat projects/{{ project.slug }}.md</p>
       <h1 id="project-title">{{ project.title }}</h1>
       <a class="project-url" :href="project.url" target="_blank" rel="noopener noreferrer">
         {{ project.hostname }} <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span>
@@ -47,8 +54,7 @@ useHead({
     <section class="project-section" aria-labelledby="overview-title">
       <h2 id="overview-title">Le projet</h2>
       <div class="project-copy">
-        <p>Master by Greg est le site de Grégory Coulet, ingénieur du son basé à Belfort. Il présente ses prestations de mastering, de mixage et de cours de MAO personnalisés.</p>
-        <p>Le site permet de découvrir ses services, d’écouter ses références et de trouver les informations pour le contacter.</p>
+        <p v-for="paragraph in project.overview" :key="paragraph">{{ paragraph }}</p>
       </div>
     </section>
 
@@ -56,14 +62,12 @@ useHead({
       <h2 id="work-title">Mon accompagnement</h2>
       <div class="project-copy">
         <ul class="project-insights">
-          <li><h3>Création du site</h3><p>Développement du site pour présenter son activité et ses prestations audio.</p></li>
-          <li><h3>Conseils pour l’hébergement</h3><p>Accompagnement dans les choix d’hébergement, avec le temps nécessaire pour expliquer les étapes et répondre aux questions.</p></li>
-          <li><h3>Suivi et évolutions</h3><p>Prise en charge des demandes de mises à jour, présentation des évolutions avant publication et propositions d’améliorations.</p></li>
+          <li v-for="insight in project.insights" :key="insight.title"><h3>{{ insight.title }}</h3><p>{{ insight.text }}</p></li>
         </ul>
       </div>
     </section>
 
-    <section class="project-section" aria-labelledby="comment-title">
+    <section v-if="project.comment" class="project-section" aria-labelledby="comment-title">
       <h2 id="comment-title">Le retour du client</h2>
       <figure class="customer-comment">
         <blockquote><p>{{ project.comment }}</p></blockquote>
