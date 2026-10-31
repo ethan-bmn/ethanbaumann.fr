@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     init: true
     ports:
-      - "${HOST:-0.0.0.0}:${PORT:-3000}:3000"
+      - "${HOST:-0.0.0.0}:${PORT:-6541}:3000"
     environment:
       NUXT_SMTP_HOST: ${NUXT_SMTP_HOST:-ssl0.ovh.net}
       NUXT_SMTP_PORT: ${NUXT_SMTP_PORT:-465}
