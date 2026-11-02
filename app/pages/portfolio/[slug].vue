@@ -71,7 +71,7 @@ useHead({
       <h2 id="comment-title">Le retour du client</h2>
       <figure class="customer-comment">
         <blockquote><p>{{ project.comment }}</p></blockquote>
-        <figcaption>{{ project.customer }} <span>— {{ project.title }}</span></figcaption>
+        <figcaption>{{ project.customer }} <span>- {{ project.title }}</span></figcaption>
       </figure>
     </section>
 
