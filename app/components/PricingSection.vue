@@ -26,9 +26,9 @@
         <h3 id="hosting-pricing-title">Hébergement, déploiement & sauvegardes</h3>
         <p>Ces services sont proposés en supplément du développement, selon le type de projet.</p>
         <ul>
-          <li>Sites vitrines uniquement : hébergement sur un VPS mutualisé situé en France.</li>
+          <li>Sites vitrines uniquement : hébergement sur un VPS mutualisé situé en France ou machine vous appartenant.</li>
           <li>Logiciels et applications web : hébergement sur une machine à votre charge.</li>
-          <li>Prestation de déploiement de votre logiciel ou application sur ce VPS séparé, sur devis.</li>
+          <li>Prestation de déploiement de votre logiciel ou application sur devis.</li>
           <li>Sauvegardes en option, selon les besoins de votre projet.</li>
         </ul>
       </aside>
