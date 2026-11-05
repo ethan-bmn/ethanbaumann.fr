@@ -12,6 +12,7 @@
           <h3 id="website-pricing-title">Développement de sites web</h3>
           <p class="pricing-amount">À partir de 800 €</p>
           <p>Conception et développement d’un site adapté à votre activité et à vos contenus.</p>
+          <p>Déploiement sur un hébergement mutualisé ou machine vous appartenant.</p>
         </article>
         <article class="pricing-option" aria-labelledby="software-pricing-title">
           <h3 id="software-pricing-title">Développement logiciel</h3>
