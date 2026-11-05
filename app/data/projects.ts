@@ -1,7 +1,7 @@
 export const projects = [
   {
     slug: 'masterbygreg',
-    title: 'Master by Greg',
+    title: 'Master By Greg',
     url: 'https://masterbygreg.com',
     hostname: 'masterbygreg.com',
     image: '/portfolio/masterbygreg.jpg',
@@ -28,7 +28,7 @@ export const projects = [
     hostname: 'franceschibaumann.com',
     image: '/portfolio/franceschibaumann.jpg',
     alt: 'Aperçu du site de Paul-Elie Franceschi Baumann, psychologue du travail à Lyon',
-    domain: 'Psychologie',
+    domain: 'Psychologie du travail',
     type: 'Site web',
     customer: 'Paul-Elie Franceschi Baumann',
     description: 'Création du site de Paul-Elie Franceschi Baumann, psychologue du travail à Lyon : présentation du praticien, informations sur les consultations et accès à Doctolib.',
@@ -43,6 +43,6 @@ export const projects = [
       { title: 'Prise de rendez-vous', text: 'Des liens vers Doctolib accessibles à plusieurs endroits du site pour faciliter la réservation d’une consultation.' },
       { title: 'Adresse e-mail et Google Workspace', text: 'Création de l’adresse e-mail professionnelle et accompagnement dans la configuration de Google Workspace pour aider le client à prendre en main sa messagerie.' }
     ],
-    comment: ''
+    comment: 'Les services proposés par Ethan Baumann l’ont été dans un délai rapide, avec une précision remarquable. De la prise de brief à la livraison, Ethan a fait preuve d’une compréhension des enjeux de ma structure et d’une qualité d’exécution remarquable. Je recommande vivement !!'
   }
 ]

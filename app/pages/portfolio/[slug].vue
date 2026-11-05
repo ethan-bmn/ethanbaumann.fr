@@ -9,7 +9,7 @@ if (!project) {
   throw createError({ statusCode: 404, statusMessage: 'Projet introuvable' })
 }
 
-const title = `${project.title} — Projet web | Ethan Baumann`
+const title = `${project.title} - Projet | Ethan Baumann`
 const description = project.description
 const canonical = `https://ethanbaumann.fr/portfolio/${project.slug}`
 
