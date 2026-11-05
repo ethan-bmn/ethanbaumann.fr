@@ -52,7 +52,7 @@
 .pricing-command span { color: #11a8cd; }
 .pricing h2 { margin: 0; font-size: clamp(24px, 3vw, 40px); font-weight: 400; letter-spacing: -.04em; line-height: 1.2; }
 .pricing-intro { max-width: 38ch; margin: 24px 0 0; }
-.pricing p, .pricing li { color: #b8b8b8; font-size: clamp(14px, 1.15vw, 17px); }
+.pricing p:where(:not(.pricing-command)), .pricing li { color: #b8b8b8; font-size: clamp(14px, 1.15vw, 17px); }
 .pricing-content { min-width: 0; }
 .pricing-options { display: grid; gap: 28px; }
 .pricing-option + .pricing-option { padding-top: 28px; border-top: 1px solid #242424; }
