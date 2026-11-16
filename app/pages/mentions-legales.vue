@@ -30,7 +30,7 @@ useHead({
     <div class="legal-content">
       <section aria-labelledby="publisher-title">
         <h2 id="publisher-title">Édition du site</h2>
-        <p>Le site <a href="https://ethanbaumann.fr">ethanbaumann.fr</a> est édité par Ethan Baumann, qui en assure également la direction de la publication.</p>
+        <p>Le site <a href="https://ethanbaumann.fr">ethanbaumann.fr</a> est édité par Ethan Baumann (SIREN : 130 584 659), qui en assure également la direction de la publication.</p>
         <p>Contact : <a href="mailto:contact@ethanbaumann.fr">contact@ethanbaumann.fr</a></p>
       </section>
 
