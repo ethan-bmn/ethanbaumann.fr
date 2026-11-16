@@ -65,7 +65,7 @@ async function submit() {
             <input id="contact-website" v-model="form.website" name="website" tabindex="-1" autocomplete="off">
           </div>
 
-          <p class="privacy-note">Vos coordonnées et votre message me sont transmis par e-mail pour répondre à votre demande.</p>
+          <p class="privacy-note">Vos coordonnées et votre message me sont transmis par e-mail pour répondre à votre demande. <NuxtLink to="/mentions-legales#donnees-personnelles">En savoir plus sur vos données.</NuxtLink></p>
           <TurnstileChallenge ref="challenge" v-model="turnstileToken" />
           <button type="submit" :disabled="sending || !turnstileToken">{{ sending ? 'Envoi en cours…' : 'Envoyer le message ↗' }}</button>
         </fieldset>
@@ -94,6 +94,7 @@ input, textarea { display: block; box-sizing: border-box; width: 100%; min-width
 textarea { resize: vertical; }
 .field-hint { margin-top: -12px; }
 .privacy-note { line-height: 1.6; }
+.privacy-note a { color: inherit; text-underline-offset: 3px; }
 button { min-height: 44px; padding: 12px 18px; border: 1px solid white; background: white; color: black; cursor: pointer; font: inherit; font-size: 14px; }
 button:enabled:hover { background: #d4d4d4; }
 button:disabled { border-color: #444; background: #171717; color: #919191; cursor: not-allowed; }

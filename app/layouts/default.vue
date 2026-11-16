@@ -57,6 +57,7 @@ onMounted(() => {
 
     <footer class="page-footer">
       <span class="copyright">ethanbaumann.fr © {{ year }} - Tous droits réservés</span>
+      <NuxtLink class="legal-link" to="/mentions-legales">Mentions légales</NuxtLink>
     </footer>
   </div>
 </template>
@@ -69,6 +70,8 @@ onMounted(() => {
 .section-links a::after { content: ''; position: absolute; right: 0; bottom: 6px; left: 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .2s ease-out; }
 .section-links a:hover, .section-links a:focus-visible { color: white; }
 .section-links a:hover::after, .section-links a:focus-visible::after { transform: scaleX(1); }
+.legal-link { color: inherit; text-underline-offset: 4px; transition: color .2s ease-out; }
+.legal-link:hover, .legal-link:focus-visible { color: white; }
 
 @media (max-width: 1100px) {
   .page-header { flex-wrap: wrap; gap: 12px 24px; padding-block: 20px; }
@@ -104,6 +107,6 @@ onMounted(() => {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .section-links a, .section-links a::after, .menu-icon > span { transition: none; }
+  .section-links a, .section-links a::after, .menu-icon > span, .legal-link { transition: none; }
 }
 </style>
