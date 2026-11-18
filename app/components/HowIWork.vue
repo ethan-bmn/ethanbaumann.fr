@@ -11,22 +11,22 @@
         <span class="workflow-number" aria-hidden="true">01</span>
         <div>
           <h3>Échanger & cadrer</h3>
-          <p>Quels sont vos besoins métier, vos contraintes et vos objectifs ? Nous aborderons ces sujets ensemble pour cadrer un projet qui répond à vos attentes et qui apportera une valeur ajoutée a vos idées de base.</p>
-          <p>J'en définirais la structure, les jalons et les choix techniques adaptés à votre projet. Nous validerons conjointement cette direction avant de passer au développement.</p>
+          <p>Quels sont vos besoins métier, vos contraintes et vos objectifs ? Nous aborderons ces sujets ensemble pour cadrer un projet qui répond à vos attentes et qui apportera une valeur ajoutée à vos idées de base.</p>
+          <p>J’en définirai la structure, les jalons et les choix techniques adaptés à votre projet. Nous validerons conjointement cette direction avant de passer au développement.</p>
+        </div>
+      </li>
+      <li>
+        <span class="workflow-number" aria-hidden="true">02</span>
+        <div>
+          <h3>Développer & ajuster</h3>
+          <p>Je développerai par la suite votre site ou application avec des points réguliers (sprints) pour vous montrer les avancées. Vos retours permettront d’ajuster le résultat au fil du projet.</p>
         </div>
       </li>
       <li>
         <span class="workflow-number" aria-hidden="true">03</span>
         <div>
-          <h3>Développer & ajuster</h3>
-          <p>Je développerais par la suite votre site ou application avec des points réguliers (sprints) pour vous montrer les avancées. Vos retours permettentrons d’ajuster le résultat au fil du projet.</p>
-        </div>
-      </li>
-      <li>
-        <span class="workflow-number" aria-hidden="true">04</span>
-        <div>
           <h3>Tester & livrer</h3>
-          <p>Nous vérifierons ensemble le fonctionnement avant la livraison. Je vous transmettrai les éléments nécessaires à la prise en main (documentation, accès, ...) et, si prévu au devis, je m’occuperais de la mise en ligne.</p>
+          <p>Nous vérifierons ensemble le fonctionnement avant la livraison. Je vous transmettrai les éléments nécessaires à la prise en main (documentation, accès, ...) et, si prévu au devis, je m’occuperai de la mise en ligne.</p>
         </div>
       </li>
     </ol>

@@ -23,7 +23,7 @@
         <p>Nous vérifions ensemble le fonctionnement du site ou de l’application. Je vous transmets ensuite les éléments nécessaires à la prise en main. Si la mise en ligne est prévue au devis, je m’occupe également du déploiement.</p>
       </FaqAccordion>
       <FaqAccordion question="Comment mon site vitrine sera référencé sur Google ?">
-        <p>Tous les sites vitrines que je produis contiennent les données suffisantes à un référencement organique sur les moteurs de recherche. Si vous le souhaitez, je pourrai vous accompagner dans le paramétrage de l'outil Google Search Console qui propose met à disposition les outils nécessaires au bon référencement du site ainsi que des statistiques quant aux résultats de recherche.</p>
+        <p>Tous les sites vitrines que je produis contiennent les données suffisantes à un référencement organique sur les moteurs de recherche. Si vous le souhaitez, je pourrai vous accompagner dans le paramétrage de l'outil Google Search Console qui met à disposition les outils nécessaires au bon référencement du site ainsi que des statistiques quant aux résultats de recherche.</p>
       </FaqAccordion>
     </div>
   </section>
